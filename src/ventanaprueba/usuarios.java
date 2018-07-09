@@ -72,12 +72,22 @@ public class usuarios extends javax.swing.JFrame {
         });
         getContentPane().add(btn_guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, 80, 40));
 
+        jLabel3.setBackground(new java.awt.Color(0, 51, 204));
+        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("id");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 60, 20));
 
         txtid.setEditable(false);
-        txtid.setBackground(new java.awt.Color(12, 5, 5));
-        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 550, 30, -1));
+        txtid.setBackground(new java.awt.Color(0, 0, 102));
+        txtid.setFont(new java.awt.Font("Segoe UI Emoji", 3, 18)); // NOI18N
+        txtid.setForeground(new java.awt.Color(255, 255, 255));
+        txtid.setText("  BIENVENIDO AL JUEGO ");
+        txtid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtidActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 240, 30));
 
         lbl_fondo.setBackground(new java.awt.Color(237, 206, 206));
         lbl_fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo_menuPrincipal.jpg"))); // NOI18N
@@ -101,15 +111,15 @@ public class usuarios extends javax.swing.JFrame {
         }
         else{
             try{//conexion
-                String url="jdbc:derby://localhost:1527/sample";
+                String url="jdbc:mysql://localhost3306/juego_poo";
                 String usuario= "root";
                 String contraseña="";
-                Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+                Class.forName("com.mysql.jdbc.Driver").newInstance();
                 con= DriverManager.getConnection(url, usuario, contraseña);
                 if(con!=null)
                     System.out.println("se ha establecido conexion con la base de datos"+url);
                 stmt= con.createStatement();
-                stmt.executeUpdate("INSERT INTO jugador VALUES('"+0+","+cadena1+")");//insertando
+                stmt.executeUpdate("INSERT INTO jugadores(nombre) VALUES('"+cadena1+"')");//insertando
                 System.out.println("el nombre se ha agregado a la bd");
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(usuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,10 +151,16 @@ public class usuarios extends javax.swing.JFrame {
         if((c<'a'||c>'z')&&(c<'A'||c>'Z')&&(c<' '|| c>' '));
     }//GEN-LAST:event_txtnombreKeyTyped
 
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtidActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+      
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -175,6 +191,7 @@ public class usuarios extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_guardar;
